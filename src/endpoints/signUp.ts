@@ -3,6 +3,7 @@ import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Athenticator";
+import { BaseDatabase } from "../data/BaseDatabase";
 
 export const signUp = async (req: Request, res: Response) => {
 
@@ -44,4 +45,6 @@ export const signUp = async (req: Request, res: Response) => {
             message: error.message
         })
     }
+
+    await BaseDatabase.destroyConnection();
 };
