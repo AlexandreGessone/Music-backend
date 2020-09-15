@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { AddressInfo } from "net";
 import { signUp } from "./endpoints/signUp";
 import { login } from "./endpoints/login";
+import { createMusic } from "./endpoints/createMusic";
 
 
 dotenv.config();
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.post("/signup", signUp);
 app.post("/login", login);
+app.post("/music/:id", createMusic);
 
 
 
