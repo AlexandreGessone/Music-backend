@@ -6,9 +6,10 @@ export class MusicDatabase extends BaseDatabase {
 
     public async createMusic(
         id: string, 
+        user_id: string,
         title: string, 
         author: string, 
-        date: Date, 
+        date: number, 
         file: string,
         genre: string,
         album: string
@@ -16,6 +17,7 @@ export class MusicDatabase extends BaseDatabase {
         await this.getConnection()
         .insert({
             id,
+            user_id,
             title,
             author,
             date,
@@ -23,7 +25,10 @@ export class MusicDatabase extends BaseDatabase {
             genre,
             album
         }).into(MusicDatabase.TABLE_NAME);
-    }
+    };
 
-    
+    public async getMusics(): Promise<void> {
+        await this.getConnection()
+        .select("*").from(MusicDatabase.TABLE_NAME)
+    };
 }
