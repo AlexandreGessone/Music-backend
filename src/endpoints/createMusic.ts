@@ -9,16 +9,17 @@ export const createMusic = async (req: Request, res: Response) => {
     try {
 
         const token = req.headers.authorization as string;
-        const id = req.params.id as any;
+        const user_id = req.params.user_id as any;
         const title = req.body.title;
         const author = req.body.author;
-        const date = req.body.data;
         const file = req.body.file;
         const genre = req.body.genre;
         const album = req.body.album;
 
+       
 
-        if(!token || !id || !title || !author || !file || !genre || !album) {
+
+        if(!token || !title || !user_id || !author || !file || !genre || !album) {
             throw new Error ("Insert all informations required!")
         }
 
@@ -28,12 +29,16 @@ export const createMusic = async (req: Request, res: Response) => {
         const idGenerator = new IdGenerator();
         const id_music = idGenerator.generateId();
 
+        const createDate = Date.now();
+
+
         const musicDatabase = new MusicDatabase();
         await musicDatabase.createMusic(
             id_music,
+            user_id,
             title,
             author,
-            date,
+            createDate,
             file,
             genre,
             album

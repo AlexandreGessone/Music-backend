@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.post("/signup", signUp);
 app.post("/login", login);
-app.post("/music/:id", createMusic);
+app.post("/music/:user_id", createMusic);
 
 
 
