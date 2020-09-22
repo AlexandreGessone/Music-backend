@@ -27,8 +27,10 @@ export class MusicDatabase extends BaseDatabase {
         }).into(MusicDatabase.TABLE_NAME);
     };
 
-    public async getMusics(): Promise<void> {
-        await this.getConnection()
-        .select("*").from(MusicDatabase.TABLE_NAME)
+    public async getMusics(): Promise<any> {
+       const result = await this.getConnection().raw(`
+       SELECT * FROM Musics;
+       `);
+       return result[0]
     };
-}
+} 
