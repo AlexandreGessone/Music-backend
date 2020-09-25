@@ -5,11 +5,14 @@ import { signUp } from "./endpoints/signUp";
 import { login } from "./endpoints/login";
 import { createMusic } from "./endpoints/createMusic";
 import { getMusics } from "./endpoints/getMusics";
+import cors from "cors";
+
 
 
 dotenv.config();
 
 const app = express();
+app.use(cors({ origin: true }));
 app.use(express.json());
 
 app.post("/signup", signUp);
