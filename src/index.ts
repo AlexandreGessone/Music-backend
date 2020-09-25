@@ -14,6 +14,7 @@ dotenv.config();
 const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
+app.use(cors());
 
 app.post("/signup", signUp);
 app.post("/login", login);
